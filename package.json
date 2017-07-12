@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "A relational database in localStorage",
   "main": "./dist/index.js",
-  "module": "index.js",
   "scripts": {
     "build": "yarn build:production",
     "build:production": "source .env.production && webpack",
