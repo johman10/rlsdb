@@ -6,15 +6,21 @@ import where from 'functions/where';
 import find from 'functions/find';
 import getRelation from 'functions/get-relation';
 import save from 'functions/save';
+import validate from 'functions/validate';
 
+// Example options
+// {
+//   validations: {
+//     unique: ['key'],
+//     minLength: ['key', 10],
+//     maxLength: ['key', 12]
+//   }
+// };
 export default class RLSDB {
-  constructor (record = {}) {
+  constructor (record = {}, options = {}) {
     this.record = record;
-    assignRecordProperties(this);
-  }
-
-  static config(options = {}) {
     this.options = options;
+    assignRecordProperties(this);
   }
 
   static findAll () { return findAll(this, ...arguments); }
@@ -24,4 +30,5 @@ export default class RLSDB {
 
   getRelation () { return getRelation(this, ...arguments); }
   save () { return save(this, ...arguments); }
+  validate () { return validate(this, ...arguments); }
 }

@@ -7,7 +7,7 @@
     "build": "yarn build:production",
     "build:production": "source .env.production && webpack",
     "build:test": "source .env.test && webpack",
-    "test": "yarn build:test && source .env.test && source .env.test && karma start test/karma.conf.js"
+    "test": "yarn build:test && source .env.test && karma start test/karma.conf.js"
   },
   "repository": {
     "type": "git",

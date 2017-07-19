@@ -30,7 +30,8 @@ let rendererConfig = {
       dist: path.join(__dirname, 'dist'),
       functions: path.join(__dirname, 'functions'),
       helpers: path.join(__dirname, 'helpers'),
-      test: path.join(__dirname, 'test')
+      test: path.join(__dirname, 'test'),
+      validations: path.join(__dirname, 'validations')
     }
   }
 };

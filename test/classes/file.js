@@ -1,8 +1,8 @@
 import RLSDB from 'dist/index';
 
 class File extends RLSDB {
-  constructor(record = {}) {
-    super(record);
+  constructor(record = {}, options = {}) {
+    super(record, options);
   }
 }
 

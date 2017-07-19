@@ -1,6 +1,10 @@
 # RLSDB
 RLSDB stands for relational localStorage Database and is exactly that. It make it possible to create records in localStorage.
 
+## Heads up before use
+This is still under development and the API might change without notice.
+No versioning is used for now until I found a good API that works for everything I want to implement.
+
 ## Why?
 RLSDB started as a part of a project of mine, [tvIndexer](https://github.com/johman10/tvIndexer), and while building it I relalised it's actually better of as seperate project and so here we are.
 
@@ -24,7 +28,8 @@ RLSDB is able to:
 
 RLSDB is *not* (yet) able to:
 1. Remove records
-2. Export for CommonJS or requireJS
+2. Allow the same validation type for different keys
+3. Make it into a singleton? (not sure if I can)
 
 ## Examples
 It's easiest to understand and explain and API by some examples. So here we go!

@@ -12,15 +12,16 @@ describe('findBy', () => {
     new File({ data: 'string', version: 2 }).save();
     filterKey = 'data';
     filterValue = 'string';
-    result = File.findBy(filterKey, filterValue);
   });
 
   it('should return only one record', () => {
+    result = File.findBy(filterKey, filterValue);
     expect(result).to.be.an.instanceof(File);
     expect(result.version).to.equal(fileRecord.version);
   });
 
   it('should only return a record with matching key value', () => {
+    result = File.findBy(filterKey, filterValue);
     expect(result[filterKey]).to.equal(filterValue);
   });
 

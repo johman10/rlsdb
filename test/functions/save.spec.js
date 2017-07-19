@@ -10,7 +10,7 @@ describe('save', () => {
     const savedId = 100;
     localStorage[`${tableName}LastId`] = savedId;
     expectedId = savedId + 1;
-    savedRecord = new File().save();
+    savedRecord = new File({ data: 1 }).save();
   });
 
   it('saves the data in localStorage', () => {
@@ -36,5 +36,11 @@ describe('save', () => {
 
   it('returns an instance of the right constructor', () => {
     expect(savedRecord.constructor).to.equal(File);
+  });
+
+  it('doesn\'t save is validations fail', () => {
+    const nonSavedRecord = new File({ data: 1 }, { validations: { unique: 'data' }});
+    nonSavedRecord.save();
+    expect(localStorage[`${tableName}${savedRecord.id + 1}`]).to.be.undefined;
   });
 });

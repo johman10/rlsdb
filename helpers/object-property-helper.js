@@ -1,4 +1,4 @@
-export function assignRecordProperties (classInstance) { // eslint-disable-line no-console
+export function assignRecordProperties (classInstance) {
   if (hasNoRecord(classInstance)) return;
 
   const recordKeys = Object.keys(classInstance.record);

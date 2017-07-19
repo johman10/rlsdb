@@ -3,6 +3,9 @@ import { getClass, getTableName, getHighestId } from 'helpers/class-helper';
 import { assignRecordProperties } from 'helpers/object-property-helper';
 
 export default function save (classInstance) {
+  const isInvalid = !(classInstance.validate());
+  if (isInvalid) return;
+
   const classObject = getClass(classInstance);
   const tableName = getTableName(classObject);
 
