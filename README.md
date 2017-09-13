@@ -104,7 +104,7 @@ example.movies = [movie.id, secondMovie.id]
 example.save();
 ```
 
-### Fetch a relation
+#### Fetch a relation
 ```js
 import Movie from 'path/to/class/movie';
 import Example from 'path/to/class/example';
