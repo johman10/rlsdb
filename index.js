@@ -17,9 +17,8 @@ import validate from 'functions/validate';
 //   }
 // };
 export default class RLSDB {
-  constructor (record = {}, options = {}) {
+  constructor (record = {}) {
     this.record = record;
-    this.options = options;
     assignRecordProperties(this);
   }
 

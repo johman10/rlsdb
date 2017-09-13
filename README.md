@@ -25,11 +25,11 @@ RLSDB is able to:
 6. [Fetch has-one relations](#fetch-a-relation)
 7. [Fetch belongs-to relations](#fetch-a-relation)
 8. [Fetch belongs-to-many relations](#fetch-a-relation)
+9. [Validate records](#validate-records)
 
 RLSDB is *not* (yet) able to:
 1. Remove records
-2. Allow the same validation type for different keys
-3. Make it into a singleton? (not sure if I can)
+2. Make it into a singleton? (not sure if I can)
 
 ## Examples
 It's easiest to understand and explain and API by some examples. So here we go!
@@ -40,7 +40,7 @@ import RLSDB from 'rlsdb';
 
 class Example extends RLSDB {
   constructor(record) {
-    super('examples', record); // 'examples' is used as the tablename
+    super(record);
   }
 }
 ```
@@ -81,7 +81,7 @@ import RLSDB from 'rlsdb';
 
 class Movie extends RLSDB {
   constructor(record) {
-    super('movies', record); // 'movies' is used as the tablename
+    super(record);
   }
 }
 ```
@@ -115,4 +115,28 @@ const movieManyRelation = example.getRelation('hasMany', Movie);
 
 const exampleBelongsToOneMovie = Movie.find(1).getRelation('belongsTo', Example);
 const exampleBelongsToManyMovie = Movie.find(1).getRelation('belongsToMany', Example);
+```
+
+#### Validate records
+Validations should be added as a function on the class you create (see example below).
+The validations that are supported right now are:
+ - required
+ - unique
+In all validations you are able to either specify an Array or just a String.
+
+```js
+import RLSDB from 'rlsdb';
+
+class validationClass from RLSDB {
+  constructor(record) {
+    super(record);
+  }
+
+  validations () {
+    return {
+      required: ['nested.value', 'key'],
+      unique: 'key'
+    }
+  }
+}
 ```

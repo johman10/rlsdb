@@ -1,35 +1,57 @@
-import File from 'test/classes/file';
-
-let nonSavedFile;
-let result;
+import ClassWithOneValidations from 'test/classes/validate/class-with-one-validations';
+import ClassWithMultipleValidations from 'test/classes/validate/class-with-multiple-validations';
+import ClassWithoutValidations from 'test/classes/validate/class-without-validations';
 
 describe('validate', () => {
   beforeEach(() => {
     localStorage.clear();
-    new File({ data: 'string', otherValue: 'string3' }).save();
   });
 
-  it('should return false if validation fails', () => {
-    nonSavedFile = new File({ data: 'string' }, { validations: { unique: 'data' }});
-    result = nonSavedFile.validate();
-    expect(result).to.be.false;
+  describe('if one validations are defined', () => {
+    beforeEach(() => {
+      new ClassWithOneValidations({ data: 'string', otherValue: 'string3' }).save();
+    });
+
+    it('should return false if validation rejects', () => {
+      const nonSavedClassWithOneValidations = new ClassWithOneValidations({ data: 'string' });
+      const result = nonSavedClassWithOneValidations.validate();
+      expect(result).to.be.false;
+    });
+
+    it('should return true if validation passes', () => {
+      const nonSavedClassWithOneValidations = new ClassWithOneValidations({ data: 'string2' });
+      const result = nonSavedClassWithOneValidations.validate();
+      expect(result).to.be.true;
+    });
   });
 
-  it('should return true if validation succeeds', () => {
-    nonSavedFile = new File({ data: 'string2' }, { validations: { unique: 'data' }});
-    result = nonSavedFile.validate();
-    expect(result).to.be.true;
+  describe('if multiple validations are defined', () => {
+    beforeEach(() => {
+      new ClassWithMultipleValidations({ data: 'string' }).save();
+    });
+
+    it('should return false if validation rejects', () => {
+      const nonSavedClassWithMultipleValidations = new ClassWithMultipleValidations({ data: 'string' });
+      const result = nonSavedClassWithMultipleValidations.validate();
+      expect(result).to.be.false;
+    });
+
+    it('should return true if validation passes', () => {
+      const nonSavedClassWithMultipleValidations = new ClassWithMultipleValidations({ data: 'string2', test: 'hallo' });
+      const result = nonSavedClassWithMultipleValidations.validate();
+      expect(result).to.be.true;
+    });
   });
 
-  it('should return true if no validation defined', () => {
-    nonSavedFile = new File({ data: 'string' });
-    result = nonSavedFile.validate();
-    expect(result).to.be.true;
-  });
+  describe('if no validations are defined', () => {
+    beforeEach(() => {
+      new ClassWithoutValidations({ data: 'string' }).save();
+    });
 
-  it('should work with multiple validations', () => {
-    nonSavedFile = new File({ data: 'string' }, { validations: { unique: 'data' }});
-    result = nonSavedFile.validate();
-    expect(result).to.be.false;
+    it('should return true', () => {
+      const nonSavedClassWithoutValidations = new ClassWithoutValidations({ data: 'string' });
+      const result = nonSavedClassWithoutValidations.validate();
+      expect(result).to.be.true;
+    });
   });
 });

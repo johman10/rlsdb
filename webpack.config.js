@@ -36,7 +36,12 @@ let rendererConfig = {
   }
 };
 
-if (process.env.NODE_ENV !== 'production') {
+/**
+ * Adjust rendererConfig for production settings
+ */
+if (process.env.NODE_ENV === 'production') {
+  rendererConfig.devtool = '';
+
   /**
    * Apply ESLint
    */
@@ -48,13 +53,6 @@ if (process.env.NODE_ENV !== 'production') {
       use: 'eslint-loader'
     }
   );
-}
-
-/**
- * Adjust rendererConfig for production settings
- */
-if (process.env.NODE_ENV === 'production') {
-  rendererConfig.devtool = '';
 
   rendererConfig.plugins.push(
     new webpack.DefinePlugin({

@@ -39,8 +39,6 @@ describe('save', () => {
   });
 
   it('doesn\'t save is validations fail', () => {
-    const nonSavedRecord = new File({ data: 1 }, { validations: { unique: 'data' }});
-    nonSavedRecord.save();
-    expect(localStorage[`${tableName}${savedRecord.id + 1}`]).to.be.undefined;
+    
   });
 });

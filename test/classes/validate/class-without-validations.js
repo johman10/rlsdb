@@ -1,9 +1,9 @@
 import RLSDB from 'dist/index';
 
-class File extends RLSDB {
+class ClassWithoutValidations extends RLSDB {
   constructor(record = {}) {
     super(record);
   }
 }
 
-export default File;
+export default ClassWithoutValidations;

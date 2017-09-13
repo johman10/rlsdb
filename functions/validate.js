@@ -1,19 +1,16 @@
 import validationFunctions from 'validations/index';
 
 export default function (classInstance) {
-  const validations = classInstance.options.validations;
-  if (!validations) return true;
+  if (!classInstance.validations) return true;
+  const validations = classInstance.validations();
   const validationNames = Object.keys(validations);
   const validationResults = [];
+
   validationNames.forEach((validationName) => {
     const validationDetails = validations[validationName];
-    let isValid;
-    if (validationDetails.constructor === String) {
-      isValid = validationFunctions[validationName](classInstance, validationDetails);
-    } else {
-      isValid = validationFunctions[validationName](classInstance, ...validationDetails);
-    }
+    const isValid = validationFunctions[validationName](classInstance, validationDetails);
     validationResults.push(isValid);
   });
+
   return validationResults.every(result => result);
 }
