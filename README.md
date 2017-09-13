@@ -127,7 +127,7 @@ In all validations you are able to either specify an Array or just a String.
 ```js
 import RLSDB from 'rlsdb';
 
-class validationClass from RLSDB {
+class ValidationClass from RLSDB {
   constructor(record) {
     super(record);
   }
@@ -139,4 +139,11 @@ class validationClass from RLSDB {
     }
   }
 }
+```
+
+Records will be validated before saving the record, but you're also able to validate it yourself if you have to.
+To do so just run:
+
+```js
+const isValid = new ValidationClass({ key: 'test', nested: { value: 'test' }}).validate(); // Should return true in this case
 ```
