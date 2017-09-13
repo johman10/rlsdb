@@ -104,7 +104,7 @@ example.movies = [movie.id, secondMovie.id]
 example.save();
 ```
 
-#### Fetch a relation
+### Fetch a relation
 ```js
 import Movie from 'path/to/class/movie';
 import Example from 'path/to/class/example';
@@ -117,11 +117,12 @@ const exampleBelongsToOneMovie = Movie.find(1).getRelation('belongsTo', Example)
 const exampleBelongsToManyMovie = Movie.find(1).getRelation('belongsToMany', Example);
 ```
 
-#### Validate records
+### Validate records
 Validations should be added as a function on the class you create (see example below).
 The validations that are supported right now are:
  - required
  - unique
+
 In all validations you are able to either specify an Array or just a String.
 
 ```js
