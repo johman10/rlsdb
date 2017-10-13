@@ -1,6 +1,6 @@
 import RLSDB from 'dist/index';
 
-class ClassWithValidations extends RLSDB {
+class ClassWithMultipleValidations extends RLSDB {
   constructor(record = {}) {
     super(record);
   }
@@ -13,4 +13,4 @@ class ClassWithValidations extends RLSDB {
   }
 }
 
-export default ClassWithValidations;
+export default ClassWithMultipleValidations;

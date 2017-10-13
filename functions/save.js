@@ -4,7 +4,7 @@ import { assignRecordProperties } from 'helpers/object-property-helper';
 
 export default function save (classInstance) {
   const isInvalid = !(classInstance.validate());
-  if (isInvalid) return;
+  if (isInvalid) return classInstance;
 
   const classObject = getClass(classInstance);
   const tableName = getTableName(classObject);

@@ -1,4 +1,4 @@
-import ClassWithOneValidations from 'test/classes/validate/class-with-one-validations';
+import ClassWithOneValidation from 'test/classes/validate/class-with-one-validation';
 import ClassWithMultipleValidations from 'test/classes/validate/class-with-multiple-validations';
 import ClassWithoutValidations from 'test/classes/validate/class-without-validations';
 
@@ -9,18 +9,18 @@ describe('validate', () => {
 
   describe('if one validations are defined', () => {
     beforeEach(() => {
-      new ClassWithOneValidations({ data: 'string', otherValue: 'string3' }).save();
+      new ClassWithOneValidation({ data: 'string', otherValue: 'string3' }).save();
     });
 
     it('should return false if validation rejects', () => {
-      const nonSavedClassWithOneValidations = new ClassWithOneValidations({ data: 'string' });
-      const result = nonSavedClassWithOneValidations.validate();
+      const nonSavedClassWithOneValidation = new ClassWithOneValidation({ data: 'string' });
+      const result = nonSavedClassWithOneValidation.validate();
       expect(result).to.be.false;
     });
 
     it('should return true if validation passes', () => {
-      const nonSavedClassWithOneValidations = new ClassWithOneValidations({ data: 'string2' });
-      const result = nonSavedClassWithOneValidations.validate();
+      const nonSavedClassWithOneValidation = new ClassWithOneValidation({ data: 'string2' });
+      const result = nonSavedClassWithOneValidation.validate();
       expect(result).to.be.true;
     });
   });

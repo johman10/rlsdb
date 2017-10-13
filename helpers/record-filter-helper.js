@@ -1,26 +1,23 @@
+import { getNestedValue } from 'helpers/nested-key-helper';
+import deepEqual from 'deep-equal';
+
 export function recordsFilter (records, key, value) {
-  const validRecords = [];
-
-  records.forEach((record) => {
-    const isValid = keyValueFilter(record, key, value);
-    if (isValid) {
-      validRecords.push(record);
-    }
-  });
-
-  return validRecords;
+  return records.filter(record => keyValueFilter(record, key, value));
 }
 
 function keyValueFilter (record, key, value) {
-  let requestedRecordValue = record;
-  key.split('.').forEach((splitKey) => {
-    if (requestedRecordValue) {
-      requestedRecordValue = requestedRecordValue[splitKey];
-    }
-  });
-  if (Array.isArray(requestedRecordValue)) {
-    return requestedRecordValue.includes(value);
-  } else {
-    return requestedRecordValue === value;
+  const recordValue = getNestedValue(record, key);
+
+  const isObject = getType(recordValue) === 'object' && getType(value) === 'object';
+  const isArray = Array.isArray(recordValue) && Array.isArray(value);
+  if (isObject || isArray) {
+    recordValue.sort();
+    value.sort();
   }
+
+  return deepEqual(recordValue, value, { strict: true });
+}
+
+function getType (value) {
+  return toString(value).slice(8, -1);
 }
