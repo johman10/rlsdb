@@ -1,6 +1,9 @@
 import validationFunctions from 'validations/index';
+import { assignRecordProperties } from 'helpers/object-property-helper';
 
 export default function (classInstance) {
+  assignRecordProperties(classInstance);
+
   if (!classInstance.validations) return true;
   let validations;
   if (typeof classInstance.validations === 'function') {

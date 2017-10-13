@@ -1,10 +1,10 @@
 import pluralize from 'pluralize';
 import { getClassName, getClass } from 'helpers/class-helper';
 
-// getRelation('hasOne', 'movie');
-// getRelation('hasMany', 'movies');
-// getRelation('belongsTo', 'movie');
-// getRelation('belongsToMany', 'movies');
+// getRelation('hasOne', Movie);
+// getRelation('hasMany', Movie);
+// getRelation('belongsTo', Movie);
+// getRelation('belongsToMany', Movie);
 export default function getRelation (classInstance, type, relationClass) {
   const classObject = getClass(classInstance);
   switch(type) {

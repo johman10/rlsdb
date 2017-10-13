@@ -11,12 +11,13 @@ export function getClass (object) {
   return object.constructor;
 }
 
-export function getClassName (classObject) {
-  return classObject.name;
+export function getClassName (object) {
+  if (!isClass(object)) object = getClass(object);
+  return object.name;
 }
 
-export function getTableName (classObject) {
-  const className = getClassName(classObject).toLowerCase();
+export function getTableName (object) {
+  const className = getClassName(object).toLowerCase();
   return pluralize.plural(className);
 }
 

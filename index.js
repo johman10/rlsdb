@@ -7,15 +7,8 @@ import find from 'functions/find';
 import getRelation from 'functions/get-relation';
 import save from 'functions/save';
 import validate from 'functions/validate';
+import remove from 'functions/remove';
 
-// Example options
-// {
-//   validations: {
-//     unique: ['key'],
-//     minLength: ['key', 10],
-//     maxLength: ['key', 12]
-//   }
-// };
 export default class RLSDB {
   constructor (record = {}) {
     this.record = record;
@@ -30,4 +23,5 @@ export default class RLSDB {
   getRelation () { return getRelation(this, ...arguments); }
   save () { return save(this, ...arguments); }
   validate () { return validate(this, ...arguments); }
+  remove () { return remove(this, ...arguments); }
 }

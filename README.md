@@ -26,10 +26,10 @@ RLSDB is able to:
 7. [Fetch belongs-to relations](#fetch-a-relation)
 8. [Fetch belongs-to-many relations](#fetch-a-relation)
 9. [Validate records](#validate-records)
+10. [Remove records](#remove-records)
 
 RLSDB is *not* (yet) able to:
-1. Remove records
-2. Make it into a singleton? (not sure if I can)
+1. Make it into a singleton? (not sure if I can)
 
 ## Examples
 It's easiest to understand and explain and API by some examples. So here we go!
@@ -148,3 +148,12 @@ To do so just run:
 ```js
 const isValid = new ValidationClass({ key: 'test', nested: { value: 'test' }}).validate(); // Should return true in this case
 ```
+
+### Remove records
+To remove records you can call `.remove()` on a class method.
+
+If you want to remove a relation as well you have the option to send in a parameter like so:
+```
+File.remove([{ type: 'hasOne', class: Movie }])
+```
+The Array can contain any amount of items, as long as they follow the same format. The type is only allowed to be one of the relationTypes found in [the relations chapter](#handle-relations)
