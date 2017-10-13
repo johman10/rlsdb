@@ -11,7 +11,6 @@ export default function save (classInstance) {
 
   const record = buildRecord(classInstance);
   localStorage[localStorageRecordKey(tableName, record.id)] = JSON.stringify(record);
-  localStorage[localStorageLastIdKey(tableName)] = record.id;
   classInstance.record = record;
   assignRecordProperties(classInstance);
   return classInstance;
@@ -53,6 +52,9 @@ function getRecordId (classInstance, offset = 0) {
   if (localStorage[newRecordKey]) {
     return getRecordId(classInstance, offset + 1);
   }
+
+  // Update the lastIdKey to match the latest record;
+  localStorage[localStorageLastIdKey(tableName)] = recordId;
 
   return recordId;
 }
