@@ -2,7 +2,12 @@ import validationFunctions from 'validations/index';
 
 export default function (classInstance) {
   if (!classInstance.validations) return true;
-  const validations = classInstance.validations();
+  let validations;
+  if (typeof classInstance.validations === 'function') {
+    validations = classInstance.validations();
+  } else {
+    validations = classInstance.validations;
+  }
   const validationNames = Object.keys(validations);
   const validationResults = [];
 
