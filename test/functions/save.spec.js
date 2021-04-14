@@ -44,6 +44,20 @@ describe('save', () => {
     });
   });
 
+  describe('updating', () => {
+    it('is able to update an existing key on a record', () => {
+      savedRecord.record.data = 'test';
+      savedRecord = savedRecord.save();
+      expect(savedRecord.data).to.equal('test');
+    });
+
+    it('is able to add a new key to an existing record', () => {
+      savedRecord.record.data2 = 'test';
+      savedRecord = savedRecord.save();
+      expect(savedRecord.data2).to.equal('test');
+    });
+  });
+
   describe('with validations', () => {
     beforeEach(() => {
       invalidRecord = new classWithOneValidation({ data: 'test' });
@@ -60,6 +74,18 @@ describe('save', () => {
       expect(invalidRecord.validate()).to.be.false;
       const unsavedRecord = invalidRecord.save();
       expect(unsavedRecord.id).to.be.undefined;
+    });
+
+    describe.only('updating', () => {
+      it('is able to update an existing key on a record', () => {
+        new classWithOneValidation({ data: 'test' }).save();
+        savedRecord = new classWithOneValidation({ data: 'test1' }).save();
+        console.log(savedRecord);
+        savedRecord.record.data = 'test';
+        const changedRecord = savedRecord.save();
+        console.log(changedRecord)
+        expect(changedRecord.data).to.equal('test');
+      });
     });
   });
 });

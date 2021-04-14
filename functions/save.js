@@ -4,7 +4,10 @@ import { assignRecordProperties } from 'helpers/object-property-helper';
 
 export default function save (classInstance) {
   const isInvalid = !(classInstance.validate());
-  if (isInvalid) return classInstance;
+  if (isInvalid && !classInstance.id) {
+    console.error('The record you\'re trying to save is invalid'); // eslint-disable-line no-console
+    return classInstance;
+  }
 
   const classObject = getClass(classInstance);
   const tableName = getTableName(classObject);
